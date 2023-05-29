@@ -1,6 +1,6 @@
 ﻿/**       
  *--------------------------------------------------------------------
- * 	   File name: RandomDataGenerator.cs
+ * 	   File name: Person.cs
  * 	Project name: csci2910_lab3
  *--------------------------------------------------------------------
  * Author’s name and email:	 Tessa Williams williamstm5@etsu.edu				
@@ -18,5 +18,37 @@ namespace csci2910_lab3
 {
     public class Person
     {
+        //Fields
+        private string[]_arrayOfFirstNames = new string[10];
+        private Dependent[] _dependents = new Dependent[10];
+
+        //Properties
+        public string FirstName { get; init; }
+        public string LastName { get; init; }
+        public DateTime BirthDate { get; init; }
+        public SSN SSN { get; init; }
+        public Phone Phone { get; init; }
+
+        //Constructors
+        public Person()
+        {
+
+        }
+
+        //Methods
+        public int Age()
+        {
+
+        }
+
+        public void AddDependent()
+        {
+
+        }
+
+        public override string ToString()
+        {
+            
+        }
     }
 }
