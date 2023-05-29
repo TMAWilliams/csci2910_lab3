@@ -26,18 +26,24 @@ namespace csci2910_lab3
             get { return _number; }
             init
             {
-
+                
+                _number = value;
             }
         }
         //Constructor
         public Phone()
         {
-
+            Random rand = new Random();
+            string number = rand.NextInt64(2000000000, 10000000000).ToString();
+            Number = number;
         }
         //Method
         public string Format(char seperator = '-')
         {
-
+            StringBuilder phoneNumber = new StringBuilder($"{Number}", 12);
+            phoneNumber.Insert(3, seperator);
+            phoneNumber.Insert(7, seperator);
+            return phoneNumber.ToString();
         }
     }
 }

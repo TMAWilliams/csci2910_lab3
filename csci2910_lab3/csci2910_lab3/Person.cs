@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace csci2910_lab3
 {
     public class Person
-    {
+    {/*
         //Fields
         private string[]_arrayOfFirstNames = new string[10];
         private Dependent[] _dependents = new Dependent[10];
@@ -50,5 +50,6 @@ namespace csci2910_lab3
         {
             
         }
+        */
     }
 }
