@@ -18,5 +18,26 @@ namespace csci2910_lab3
 {
     public class Phone
     {
+        //Field
+        private string _number;
+        //Property
+        public string Number
+        {
+            get { return _number; }
+            init
+            {
+
+            }
+        }
+        //Constructor
+        public Phone()
+        {
+
+        }
+        //Method
+        public string Format(char seperator = '-')
+        {
+
+        }
     }
 }
