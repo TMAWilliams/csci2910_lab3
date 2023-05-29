@@ -27,25 +27,8 @@ namespace csci2910_lab3
             //randomly initializes and formats an invalid number for SSN using one of the three invalidation options found here: https://secure.ssa.gov/poms.nsf/lnx/0110201035 
             init
             {
-                string number = "";
-                Random rand = new Random();
-                int option = rand.Next(1, 4);
-                if (option == 1)
-                {
-                    string[] areaNumOptions = { "000", "666", rand.Next(900, 1000).ToString() };
-                    int areaNumIndex = rand.Next(areaNumOptions.Length);
-                    number += areaNumOptions[areaNumIndex] + "-" + rand.Next(100).ToString("00") + "-" + rand.Next(10000).ToString("0000");
-                }
-                else if (option == 2)
-                {
-                    number += rand.Next(1000).ToString("000") + "-00-" + rand.Next(10000).ToString("0000");
-
-                }
-                else
-                {
-                    number += rand.Next(1000).ToString("000") + "-" + rand.Next(100).ToString("00") + "-0000";
-                }
-                _number = number;
+                
+                _number = value;
             }
         }
         //Constructor
@@ -54,7 +37,25 @@ namespace csci2910_lab3
         /// </summary>
         public SSN()
         {
+            string number = "";
+            Random rand = new Random();
+            int option = rand.Next(1, 4);
+            if (option == 1)
+            {
+                string[] areaNumOptions = { "000", "666", rand.Next(900, 1000).ToString() };
+                int areaNumIndex = rand.Next(areaNumOptions.Length);
+                number += areaNumOptions[areaNumIndex] + "-" + rand.Next(100).ToString("00") + "-" + rand.Next(10000).ToString("0000");
+            }
+            else if (option == 2)
+            {
+                number += rand.Next(1000).ToString("000") + "-00-" + rand.Next(10000).ToString("0000");
 
+            }
+            else
+            {
+                number += rand.Next(1000).ToString("000") + "-" + rand.Next(100).ToString("00") + "-0000";
+            }
+            Number = number;
         }
         //Methods
         /// <summary>
