@@ -24,10 +24,9 @@ namespace csci2910_lab3
         public string Number
         {
             get { return _number; }
-            //randomly initializes and formats an invalid number for SSN using one of the three invalidation options found here: https://secure.ssa.gov/poms.nsf/lnx/0110201035 
+            
             init
             {
-                
                 _number = value;
             }
         }
@@ -37,6 +36,7 @@ namespace csci2910_lab3
         /// </summary>
         public SSN()
         {
+            //randomly generates and formats an invalid number for SSN using one of the three invalidation options found here: https://secure.ssa.gov/poms.nsf/lnx/0110201035 
             string number = "";
             Random rand = new Random();
             int option = rand.Next(1, 4);
