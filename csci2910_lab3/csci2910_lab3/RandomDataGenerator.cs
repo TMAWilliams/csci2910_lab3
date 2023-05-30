@@ -170,14 +170,17 @@ namespace csci2910_lab3
                         break;
                     case 4:
                         //Generates random last name and displays it.
-                        Console.WriteLine("-----Random Last Name-----");
+                        Console.WriteLine("\n-----Random Last Name-----");
                         randLastName = Convert.ToString((LastName)rand.Next(10));
                         Console.WriteLine(randLastName);
                         break;
                     case 5:
-
+                        Console.WriteLine("\n-----Random SSN-----");
+                        SSN sSN = new SSN();
+                        Console.WriteLine(sSN);
                         break;
                     case 6:
+
                         break;
                     default:
                         break;
