@@ -19,7 +19,7 @@ namespace csci2910_lab3
     public class Person
     {
         //Fields
-        private string[]_arrayOfFirstNames = {"Abby", "Sydnie", "Krystal", "Sammy", "Eli", "John", "Josh", "Roberto", "Tom", "Collin"};
+        protected string[]_arrayOfFirstNames = {"Abby", "Sydnie", "Krystal", "Sammy", "Eli", "John", "Josh", "Roberto", "Tom", "Collin"};
         private Dependent[] _dependents = new Dependent[10];
         private string _firstName;
         private string _lastName;
