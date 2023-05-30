@@ -21,6 +21,7 @@ namespace csci2910_lab3
             int numPeople = 0;
             int counter;
             int personSelect;
+            string randLastName;
             Random rand = new Random();
             List<Person> population = new List<Person>();
 
@@ -136,6 +137,8 @@ namespace csci2910_lab3
                             Console.WriteLine("No people to remove. Try generating some people first.");
                         }else
                         {
+                            //Displays a list of all people.Prompts user to enter number of person they would like to remove,
+                            //validates input, and removes person from population. Repeats until user cancels.
                             do
                             {
                                 ViewAllPersons(population);
@@ -166,8 +169,13 @@ namespace csci2910_lab3
                         }
                         break;
                     case 4:
+                        //Generates random last name and displays it.
+                        Console.WriteLine("-----Random Last Name-----");
+                        randLastName = Convert.ToString((LastName)rand.Next(10));
+                        Console.WriteLine(randLastName);
                         break;
                     case 5:
+
                         break;
                     case 6:
                         break;
@@ -199,18 +207,6 @@ namespace csci2910_lab3
         static void AddPerson(Person person, List<Person> people)
         {
             people.Add(person);
-        }
-        /// <summary>
-        /// Adds multiple people to a different list of people.
-        /// </summary>
-        /// <param name="peopleToAdd">List of people to add</param>
-        /// <param name="listToAddTo">List to add multiple people to</param>
-        static void AddPeople(List<Person> peopleToAdd, List<Person> listToAddTo)
-        {
-            for (int i = 0; i < peopleToAdd.Count; i++)
-            {
-                listToAddTo.Add(peopleToAdd[i]);
-            }
         }
         /// <summary>
         /// Removes a person from a list if they exist in that list else display an error message.
