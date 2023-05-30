@@ -28,10 +28,14 @@ namespace csci2910_lab3
         private Phone _phone;
 
         //Properties
+        /*init assigns a value to the property only during the object's construction 
+         * meaning the value cannot be changed after the object is created. 
+         * https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init
+         */
         public string FirstName
         {
             get { return _firstName; }
-            init { _firstName = value; } //init assigns a value to the property only during object construction meaning the value cannot be changed after the object's creation https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init
+            init { _firstName = value; } 
         }
         public string LastName
         {
@@ -54,6 +58,9 @@ namespace csci2910_lab3
             init { _phone = value; }
         }
         //Constructors
+        /// <summary>
+        /// Constructor that randomizes data for a person
+        /// </summary>
         public Person()
         {
             Random rand = new Random();
@@ -73,20 +80,57 @@ namespace csci2910_lab3
         }
 
         //Methods
+        /// <summary>
+        /// Calculates the age of a person based on their birthday compared to today's date
+        /// </summary>
+        /// <returns>person's age</returns>
         public int Age()
         {
-
+            TimeSpan age = DateTime.Today - BirthDate;
+            int ageInYears = (age.Days/365);
+            return ageInYears;
         }
-
+        /// <summary>
+        /// Checks to see if a dependent can be added, and then if so, adds them to a person. 
+        /// If not, displays a message to the user indicating the max number of dependents has been reached.
+        /// </summary>
         public void AddDependent()
         {
-
+            if (_dependents[9] == null)
+            {
+                _dependents.Append(new Dependent());
+            }else
+            {
+                Console.WriteLine($"Maximum number of dependents reached for {FirstName} {LastName}.");
+            }
         }
-
+        /// <summary>
+        /// Overrides ToSting method to format information about a person
+        /// </summary>
+        /// <returns>message containing info about a person</returns>
         public override string ToString()
         {
-            
+            string msg = "";
+            msg += "\n--------------------";
+            msg += $"\nFirst Name: {FirstName}";
+            msg += $"\nLast Name: {LastName}";
+            msg += $"\nBirthDate: {BirthDate}";
+            msg += $"\nAge: {Age()}";
+            msg += $"\nSSN: {SSN}";
+            msg += $"\nPhone Number: {Phone}";
+            msg += "\nList of Dependents:";
+            if (_dependents != null)
+            {
+                foreach (Dependent dependent in _dependents)
+                {
+                    msg += $"\n {dependent.FirstName} {dependent.LastName}";
+                }
+            }else
+            {
+                msg += "\nNone";
+            }
+            return msg;
         }
-        
+
     }
 }
