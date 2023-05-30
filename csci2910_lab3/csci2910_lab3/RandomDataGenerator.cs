@@ -19,6 +19,8 @@ namespace csci2910_lab3
             int menuOpt;
             bool success;
             int numPeople = 0;
+            int counter;
+            int personSelect;
             Random rand = new Random();
             List<Person> population = new List<Person>();
 
@@ -29,6 +31,10 @@ namespace csci2910_lab3
                 DisplayMenu();
                 Console.Write("Menu Selection: ");
                 success = int.TryParse(Console.ReadLine(), out menuOpt);
+                if (menuOpt > 6 || menuOpt < 0)
+                {
+                    success = false;
+                }
                 while (!success)
                 {
                     Console.WriteLine("*Invalid Input* Please enter an integer 0-6.");
@@ -69,7 +75,7 @@ namespace csci2910_lab3
                         } while (!success);
                         //for the number specified by the user, generates a new person and their dependents then adds them to the list of people
                         //and displays a message indicating the number of people added to the population.
-                        int counter = 0;
+                        counter = 0;
                         for (int i = 1; i <= numPeople; i++)
                         {
                             Person person = new Person();
@@ -83,12 +89,81 @@ namespace csci2910_lab3
                             Console.WriteLine(person.ToString());
                             counter++;
                         }
-                        Console.WriteLine($"\n{counter} were added to the population!");
+                        Console.WriteLine($"\n{counter} people were added to the population!");
                         
                         break;
                     case 2:
+                        Console.WriteLine("\n-----View All Persons-----");
+                        if (population.Count == 0)
+                        {
+                            Console.WriteLine("No people found. Generating random default person now...");
+                            Person person = new Person();
+                            AddPerson(person, population);
+                        }
+                        ViewAllPersons(population);
+                        //prompts user to select a person to view or cancel and validates input then displays person's information or returns to main menu
+                        do
+                        {
+                            Console.WriteLine("\nWhich person would you like to view? (Enter 0 to cancel)");
+                            Console.Write("Person's Number: ");
+                            success = int.TryParse(Console.ReadLine(), out personSelect);
+                            if (personSelect > population.Count || personSelect < 0)
+                            {
+                                success = false;
+                            }
+                            while (!success)
+                            {
+                                Console.WriteLine($"*Invalid Input* Please enter an integer 0 - {population.Count}.");
+                                Console.WriteLine("\nWhich person would you like to view? (Enter 0 to cancel)");
+                                Console.Write("Person's Number: ");
+                                success = int.TryParse(Console.ReadLine(), out personSelect);
+                                if (personSelect > population.Count || personSelect < 0)
+                                {
+                                    success = false;
+                                }
+                            }
+                            if (personSelect != 0)
+                            {
+                                Console.WriteLine(population.ElementAt(personSelect - 1).ToString());
+                            }
+                        } while (personSelect != 0);
+                        
                         break;
                     case 3:
+                        Console.WriteLine("\n-----Remove Person-----");
+                        if (population.Count == 0)
+                        {
+                            Console.WriteLine("No people to remove. Try generating some people first.");
+                        }else
+                        {
+                            do
+                            {
+                                ViewAllPersons(population);
+                                Console.WriteLine("\nWhich person would you like to remove? (Enter 0 to cancel)");
+                                Console.Write("Person's Number: ");
+                                success = int.TryParse(Console.ReadLine(), out personSelect);
+                                if (personSelect > population.Count || personSelect < 0)
+                                {
+                                    success = false;
+                                }
+                                while (!success)
+                                {
+                                    Console.WriteLine($"*Invalid Input* Please enter an integer 0 - {population.Count}.");
+                                    Console.WriteLine("\nWhich person would you like to remove? (Enter 0 to cancel)");
+                                    Console.Write("Person's Number: ");
+                                    success = int.TryParse(Console.ReadLine(), out personSelect);
+                                    if (personSelect > population.Count || personSelect < 0)
+                                    {
+                                        success = false;
+                                    }
+                                }
+                                if (personSelect != 0)
+                                {
+                                    RemovePerson(population.ElementAt(personSelect - 1), population);
+                                }
+                            }while (personSelect != 0);
+                            
+                        }
                         break;
                     case 4:
                         break;
@@ -107,7 +182,7 @@ namespace csci2910_lab3
         /// </summary>
         static void DisplayMenu()
         {
-            Console.WriteLine("-----Main Menu-----");
+            Console.WriteLine("\n-----Main Menu-----");
             Console.WriteLine("1.Generate Random Person");
             Console.WriteLine("2.View All Persons");
             Console.WriteLine("3.Remove Person");
@@ -147,10 +222,23 @@ namespace csci2910_lab3
             if (people.Contains(person))
             {
                 people.Remove(person);
-                Console.WriteLine($"{person.FirstName} {person.LastName} was removed.");
+                Console.WriteLine($"\n{person.FirstName} {person.LastName} was removed.\n");
             }else
             {
-                Console.WriteLine($"Error {person.FirstName} {person.LastName} was not found.");
+                Console.WriteLine($"\nError {person.FirstName} {person.LastName} was not found.\n");
+            }
+        }
+        /// <summary>
+        /// Displays all people in a population in an ordered list
+        /// </summary>
+        /// <param name="population">List containing the people to view</param>
+        static void ViewAllPersons(List<Person> population)
+        {
+            int counter = 1;
+            foreach (Person person in population)
+            {
+                Console.WriteLine(counter + ". " + person.FirstName + " " + person.LastName);
+                counter++;
             }
         }
     }
