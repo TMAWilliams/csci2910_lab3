@@ -22,6 +22,7 @@ namespace csci2910_lab3
             int counter;
             int personSelect;
             string randLastName;
+            char seperator;
             Random rand = new Random();
             List<Person> population = new List<Person>();
 
@@ -180,9 +181,22 @@ namespace csci2910_lab3
                         Console.WriteLine(sSN);
                         break;
                     case 6:
-
+                        Console.WriteLine("\n-----Random Phone Number-----");
+                        //Generates a random phone number and asks user what character to use as a seperator,
+                        //validates user input, formats phone number, and displays it.
+                        Phone phone = new Phone();
+                        Console.WriteLine("\nWhat character would you like to use as a seperator?");
+                        success = char.TryParse(Console.ReadLine(), out seperator);
+                        while (!success)
+                        {
+                            Console.WriteLine("*Invalid Input* Please enter only one character.");
+                            Console.WriteLine("\nWhat character would you like to use as a seperator?");
+                            success = char.TryParse(Console.ReadLine(), out seperator);
+                        }
+                        Console.WriteLine(phone.Format(seperator));
                         break;
                     default:
+                        Console.WriteLine("Thank you for using my program! Goodbye!");
                         break;
                 }
             } while (menuOpt != 0);
