@@ -17,22 +17,59 @@ using System.Threading.Tasks;
 namespace csci2910_lab3
 {
     public class Person
-    {/*
+    {
         //Fields
-        private string[]_arrayOfFirstNames = new string[10];
+        private string[]_arrayOfFirstNames = {"Abby", "Sydnie", "Krystal", "Sammy", "Eli", "John", "Josh", "Roberto", "Tom", "Collin"};
         private Dependent[] _dependents = new Dependent[10];
+        private string _firstName;
+        private string _lastName;
+        private DateTime _birthDate;
+        private SSN _ssn;
+        private Phone _phone;
 
         //Properties
-        public string FirstName { get; init; }
-        public string LastName { get; init; }
-        public DateTime BirthDate { get; init; }
-        public SSN SSN { get; init; }
-        public Phone Phone { get; init; }
-
+        public string FirstName
+        {
+            get { return _firstName; }
+            init { _firstName = value; } //init assigns a value to the property only during object construction meaning the value cannot be changed after the object's creation https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init
+        }
+        public string LastName
+        {
+            get { return _lastName; }
+            init { _lastName = value; }
+        }
+        public DateTime BirthDate
+        {
+            get { return _birthDate; }
+            init { _birthDate = value; }
+        }
+        public SSN SSN
+        {
+            get { return _ssn; }
+            init { _ssn = value; }
+        }
+        public Phone Phone
+        {
+            get { return _phone; }
+            init { _phone = value; }
+        }
         //Constructors
         public Person()
         {
-
+            Random rand = new Random();
+            //Select first name randomly
+            FirstName = _arrayOfFirstNames[rand.Next(_arrayOfFirstNames.Length)];
+            //Select last name randomly
+            LastName = Convert.ToString((LastName)rand.Next(10));
+            //Generate random birthdate where the age of the person is 18-80 years old from current date
+            DateTime min = DateTime.Today.AddYears(-18);
+            DateTime max = DateTime.Today.AddYears(-80);
+            TimeSpan range = min - max;
+            BirthDate = max.AddDays(rand.Next(range.Days));
+            //Generate random invalid SSN
+            SSN = new SSN();
+            //Generate random phone number
+            Phone = new Phone();
         }
 
         //Methods
@@ -50,6 +87,6 @@ namespace csci2910_lab3
         {
             
         }
-        */
+        
     }
 }
