@@ -15,8 +15,47 @@ namespace csci2910_lab3
     {
         static void Main()
         {
-            
+            //Variables
+            int menuOpt;
+            bool success;
+
+            do
+            {
+                //Display main menu, ask for menu selection and validate user input
+                DisplayMenu();
+                Console.Write("Menu Selection: ");
+                success = int.TryParse(Console.ReadLine(), out menuOpt);
+                while (!success)
+                {
+                    Console.WriteLine("*Invalid Input* Please enter an integer 0-6.");
+                    Console.Write("Menu Selection: ");
+                    success = int.TryParse(Console.ReadLine(), out menuOpt);
+                    if (menuOpt > 6 || menuOpt < 0)
+                    {
+                        success = false;
+                    }
+                }
+                //Menu Functionality
+                switch (menuOpt)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        break;
+                }
+            } while (menuOpt != 0);
         }
+        //Methods
         /// <summary>
         /// Displays main menu
         /// </summary>
