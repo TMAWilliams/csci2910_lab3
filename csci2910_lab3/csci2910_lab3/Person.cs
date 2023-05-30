@@ -91,17 +91,14 @@ namespace csci2910_lab3
             return ageInYears;
         }
         /// <summary>
-        /// Checks to see if a dependent can be added, and then if so, adds them to a person. 
-        /// If not, displays a message to the user indicating the max number of dependents has been reached.
+        /// Adds a random number (max of 10) of randomly generated dependents.
         /// </summary>
         public void AddDependent()
         {
-            if (_dependents[9] == null)
+            Random rand = new Random();
+            for (int i = 0; i <= rand.Next(10); i++)
             {
-                _dependents.Append(new Dependent());
-            }else
-            {
-                Console.WriteLine($"Maximum number of dependents reached for {FirstName} {LastName}.");
+                _dependents[i] = new Dependent();
             }
         }
         /// <summary>
@@ -117,13 +114,16 @@ namespace csci2910_lab3
             msg += $"\nBirthDate: {BirthDate}";
             msg += $"\nAge: {Age()}";
             msg += $"\nSSN: {SSN}";
-            msg += $"\nPhone Number: {Phone}";
+            msg += $"\nPhone Number: {Phone.Format()}";
             msg += "\nList of Dependents:";
-            if (_dependents != null)
+            if (_dependents[0] != null)
             {
                 foreach (Dependent dependent in _dependents)
                 {
-                    msg += $"\n {dependent.FirstName} {dependent.LastName}";
+                    if (dependent != null)
+                    {
+                        msg += $"\n {dependent.FirstName} {dependent.LastName}";
+                    }
                 }
             }else
             {

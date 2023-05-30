@@ -18,7 +18,11 @@ namespace csci2910_lab3
             //Variables
             int menuOpt;
             bool success;
+            int numPeople = 0;
+            Random rand = new Random();
+            List<Person> population = new List<Person>();
 
+            
             do
             {
                 //Display main menu, ask for menu selection and validate user input
@@ -39,6 +43,39 @@ namespace csci2910_lab3
                 switch (menuOpt)
                 {
                     case 1:
+                        //Validates user input is a positve integer or else throws an error and displays a helpful message.
+                        do
+                        {
+                            success = false;
+                            Console.WriteLine("\n-----Generate Random Person-----");
+                            Console.WriteLine("How many people would you like to generate?");
+                            try
+                            {
+                                numPeople = Convert.ToInt32(Console.ReadLine());
+                                if (numPeople < 0)
+                                {
+                                    throw new FormatException();
+                                }
+                                success = true;
+                            }
+                            catch (FormatException ex)
+                            {
+                                Console.WriteLine("*Invalid Input* Please enter a positive integer.");
+                            }
+                            catch (OverflowException ex)
+                            {
+                                Console.WriteLine("*Invalid Input* Number was too large.");
+                            }
+                        } while (!success);
+                        //for the number specified by the user generate a new person and their dependents then add them to the list of people
+                        for (int i = 1; i <= numPeople; i++)
+                        {
+                            Person person = new Person();
+                            person.AddDependent();
+                            AddPerson(person, population);
+                            Console.WriteLine(person.ToString());
+                        }
+                        Console.WriteLine($"\n{numPeople} were added to the population!");
                         break;
                     case 2:
                         break;
@@ -80,6 +117,18 @@ namespace csci2910_lab3
             people.Add(person);
         }
         /// <summary>
+        /// Adds multiple people to a different list of people.
+        /// </summary>
+        /// <param name="peopleToAdd">List of people to add</param>
+        /// <param name="listToAddTo">List to add multiple people to</param>
+        static void AddPeople(List<Person> peopleToAdd, List<Person> listToAddTo)
+        {
+            for (int i = 0; i < peopleToAdd.Count; i++)
+            {
+                listToAddTo.Add(peopleToAdd[i]);
+            }
+        }
+        /// <summary>
         /// Removes a person from a list if they exist in that list else display an error message.
         /// </summary>
         /// <param name="person">Person - person to remove</param>
@@ -95,7 +144,5 @@ namespace csci2910_lab3
                 Console.WriteLine($"Error {person.FirstName} {person.LastName} was not found.");
             }
         }
-
-
     }
 }
