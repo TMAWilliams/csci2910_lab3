@@ -67,15 +67,24 @@ namespace csci2910_lab3
                                 Console.WriteLine("*Invalid Input* Number was too large.");
                             }
                         } while (!success);
-                        //for the number specified by the user generate a new person and their dependents then add them to the list of people
+                        //for the number specified by the user, generates a new person and their dependents then adds them to the list of people
+                        //and displays a message indicating the number of people added to the population.
+                        int counter = 0;
                         for (int i = 1; i <= numPeople; i++)
                         {
                             Person person = new Person();
                             person.AddDependent();
                             AddPerson(person, population);
+                            for (int j = 0; j < person.Dependents.Count(s => s != null); j++)
+                            {
+                                AddPerson(person.Dependents[j], population);
+                                counter++;
+                            }
                             Console.WriteLine(person.ToString());
+                            counter++;
                         }
-                        Console.WriteLine($"\n{numPeople} were added to the population!");
+                        Console.WriteLine($"\n{counter} were added to the population!");
+                        
                         break;
                     case 2:
                         break;

@@ -57,6 +57,7 @@ namespace csci2910_lab3
             get { return _phone; }
             init { _phone = value; }
         }
+        public Dependent[] Dependents { get { return _dependents; } }
         //Constructors
         /// <summary>
         /// Constructor that randomizes data for a person
