@@ -195,8 +195,11 @@ namespace csci2910_lab3
                         }
                         Console.WriteLine(phone.Format(seperator));
                         break;
+                    case 0:
+                        Console.WriteLine("Thank you for using my program!Goodbye!");
+                        break;
                     default:
-                        Console.WriteLine("Thank you for using my program! Goodbye!");
+                        Console.WriteLine("An error occured!");
                         break;
                 }
             } while (menuOpt != 0);

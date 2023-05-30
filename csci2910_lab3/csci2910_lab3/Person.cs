@@ -112,7 +112,7 @@ namespace csci2910_lab3
             msg += "\n--------------------";
             msg += $"\nFirst Name: {FirstName}";
             msg += $"\nLast Name: {LastName}";
-            msg += $"\nBirthDate: {BirthDate}";
+            msg += $"\nBirthDate: {BirthDate.ToString("dd/MM/yyyy")}";
             msg += $"\nAge: {Age()}";
             msg += $"\nSSN: {SSN}";
             msg += $"\nPhone Number: {Phone.Format()}";
